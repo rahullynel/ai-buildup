@@ -122,6 +122,8 @@ Final Answer + (optional citations)
 - Context too long/noisy.
 - Outdated source data.
 - Chunk boundaries break key facts.
+- Context dominance (retrieved text buries the user query).
+- Prompt truncation from token overflow.
 
 ### How to fix/mitigate them
 - Improve chunking and overlap.
@@ -131,6 +133,8 @@ Final Answer + (optional citations)
 - Add metadata filtering (date, source, domain).
 - Prompt guardrail: "If not in context, say unknown."
 - Evaluate retrieval and answer quality separately.
+- Enforce token budgets per section (instructions/context/query).
+- Compress low-priority chunks before final prompt assembly.
 
 ## 4. Orchestrators
 
@@ -167,6 +171,10 @@ Final Answer + (optional citations)
 - Retrieved/tool context.
 - User input.
 - Output format constraints.
+
+Tokenizer vs orchestrator clarification:
+- Tokenizer only tokenizes/counts/checks limits.
+- Orchestrator/prompt builder decides what context is selected, compressed, ordered, or dropped.
 
 ### Guardrails
 - Refusal rules for unsafe or out-of-policy asks.

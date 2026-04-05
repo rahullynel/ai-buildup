@@ -35,6 +35,13 @@ Retriever -> Reranker -> Prompt Builder -> Generator
 - Important chunk not ranked high.
 - Context overload/noise.
 - Stale index.
+- Context dominance (retrieved text buries user intent).
+- Prompt truncation from token overflow.
+
+## Important misconception
+- Tokenizer does not semantically choose what context to remove.
+- In production systems, orchestrator/prompt builder decides context packing.
+- Tokenizer only reports tokenized length against model limits.
 
 ## Mitigations
 - Better chunking and overlap.
@@ -43,6 +50,13 @@ Retriever -> Reranker -> Prompt Builder -> Generator
 - Metadata filtering.
 - Tight top-k.
 - Grounding guardrails.
+- Explicit token budgets for: instructions, context, and user query.
+- Context compression/summarization before final prompt build.
+- Retrieval retry with stricter filters when overflow is detected.
+
+## Fast terminology
+- Dropped context at inference != underfitting.
+- Use: context overflow, prompt truncation, context dilution.
 
 ## Add more notes
 - 

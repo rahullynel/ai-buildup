@@ -46,6 +46,8 @@ Answer (+ citations)
 - Faithfulness: answer supported by evidence.
 - Context precision: retrieved context is mostly relevant.
 - MCP: common protocol for exposing tools/context to models.
+- Context overflow: prompt exceeds token budget; pipeline must trim/compress.
+- Context dominance: retrieved chunks overshadow user intent.
 
 ## Prompt lifecycle
 - Without RAG: query -> prompt -> LLM -> answer.
@@ -62,6 +64,8 @@ Answer (+ citations)
 - Too much context in prompt.
 - No reranking.
 - No fallback on low confidence.
+- Assuming tokenizer decides what context to keep.
+- Calling prompt truncation an underfitting issue.
 
 ## Fast fixes
 - Tune chunk + overlap.
@@ -75,3 +79,5 @@ Answer (+ citations)
 - "RAG reduces hallucination by grounding generation in retrieved evidence, but it still fails when retrieval is weak or context is noisy."
 - "Orchestrator decides when to call APIs, when to retrieve docs, and when LLM-only is enough."
 - "Hybrid retrieval improves accuracy by combining real-time structured data with semantic historical context."
+- "Tokenizer is mechanical (split/count/check limits); orchestrator is the context-budget decision maker."
+- "If context is dropped at inference, call it overflow/truncation, not underfitting."

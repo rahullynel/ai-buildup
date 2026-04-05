@@ -155,6 +155,10 @@ Answer + citations
   - outdated information.
 - Prompt leakage/noise:
   - model gets distracted.
+- Context dominance:
+  - retrieved context overshadows user question.
+- Token overflow:
+  - important context or query parts get truncated.
 
 ### How to fix/mitigate
 - Improve chunking + overlap.
@@ -164,6 +168,8 @@ Answer + citations
 - Reindex regularly.
 - Keep top-k tight and high quality.
 - Add fallback response if evidence confidence is low.
+- Enforce section-level token budgets (instructions/context/query/output).
+- Compress low-priority chunks before prompt assembly.
 
 ---
 
@@ -203,6 +209,14 @@ Answer + citations
   - retrieved/tool outputs
   - user input
   - output format
+
+Tokenizer vs orchestrator:
+- Tokenizer: tokenization + length accounting only.
+- Orchestrator: context selection, compression, ordering, and truncation policy.
+
+Clarification:
+- If context is dropped due to limits, this is not underfitting.
+- Correct terms: context overflow / prompt truncation.
 
 ### Guardrails
 - Safety policy checks.

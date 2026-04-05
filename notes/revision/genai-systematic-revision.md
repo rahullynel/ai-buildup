@@ -142,6 +142,11 @@ User query -> Retriever -> Top context -> Prompt builder -> LLM -> Answer (+ cit
 - Without RAG: faster and simpler, but more risk on factual/long-tail questions.
 - With RAG: more grounded, but retrieval quality becomes a new dependency.
 
+Misconception to avoid:
+- Tokenizer does not choose which context is useful.
+- Orchestrator/prompt builder chooses context packing strategy.
+- Tokenizer only performs tokenization and limit checks.
+
 ---
 
 ## 5) Is RAG necessary? Long-context models vs RAG
@@ -306,6 +311,12 @@ Query -> Intent router
 
 - Symptom: latency too high.
 - Fix: reduce top-k, compress context, use smaller router models.
+
+- Symptom: user intent gets ignored despite retrieval.
+- Fix: control context dominance with stronger reranking, tighter chunk limits, and query-salient prompt layout.
+
+- Symptom: valid context disappears when prompt is large.
+- Fix: treat as context overflow/prompt truncation; rebudget prompt sections and retry retrieval with stricter filters.
 
 - Symptom: route picks wrong tool.
 - Fix: tighten intent classes, add confidence thresholds and fallback rules.

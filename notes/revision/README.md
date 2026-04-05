@@ -38,6 +38,9 @@ Structured revision notes for quick comeback reading.
 ### 08 Interview Revision
 - [Interview Fast Revision](08-interview-revision/interview-fast-revision.md)
 
+### 09 Tokenisation
+- [Tokenisation Basics](09-0Tokenisation/tokenisation-basics.md)
+
 ## Archive (old single-file notes)
 - [Systematic Revision Notes (old)](genai-systematic-revision.md)
 - [Detailed Revision Notes (old)](genai-detailed-revision.md)

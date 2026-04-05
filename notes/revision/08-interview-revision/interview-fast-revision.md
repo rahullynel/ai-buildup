@@ -16,6 +16,20 @@
   - API: simple fixed integrations.
   - MCP: multi-tool standardization and portability.
 
+## Common misconception checks
+- Does tokenizer drop context?
+  - No. Orchestrator/prompt builder drops or compresses context.
+- Is context dropped by token limit called underfitting?
+  - No. Use context overflow or prompt truncation.
+- Can RAG hide user intent?
+  - Yes. Context dominance/overshadowing.
+- Context dominance vs context poisoning?
+  - Dominance = too much context buries query; poisoning = harmful/untrusted context actively misleads output.
+- Who decides retrieval strategy?
+  - Orchestrator (rules/classifier/LLM router).
+- Who rebuilds final prompt?
+  - Orchestrator/prompt builder.
+
 ## Quick self-check
 - Can I explain training loop in 20 seconds?
 - Can I explain when RAG is not needed?

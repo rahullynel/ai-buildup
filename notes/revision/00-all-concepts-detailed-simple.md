@@ -176,6 +176,8 @@ Query
 - Good chunk not ranked high.
 - Too much noisy context.
 - Stale index.
+- Context dominance (retrieved text buries user intent).
+- Prompt truncation from token overflow.
 
 ### RAG fixes
 - Better chunking.
@@ -184,6 +186,8 @@ Query
 - Metadata filters.
 - Tight top-k.
 - Prompt rule: if context missing, say not enough evidence.
+- Token budgets per section (instructions/context/query).
+- Context compression before final prompt assembly.
 
 ---
 
@@ -266,6 +270,11 @@ Example:
 ### What orchestrator does
 - Decides which path to use per query.
 - Path can be API, retrieval+LLM, LLM-only, or multi-step.
+
+Important clarification:
+- Tokenizer does not decide semantic relevance.
+- Orchestrator/prompt builder decides what context is included, compressed, or dropped.
+- Tokenizer only converts text to tokens and checks max length.
 
 ### Intent classification
 - Understand user intent first:

@@ -20,3 +20,12 @@
 
 ## Add more notes
 - 
+
+## Related pipeline note (token limits)
+- Tokenizer itself is mechanical: tokenize + count + limit check.
+- In RAG systems, orchestrator/prompt builder decides what context to keep/drop/compress.
+- If context is dropped at inference, call it context overflow or prompt truncation (not underfitting).
+
+For deeper revision, see orchestration and retrieval notes in:
+- 03-orchestration/
+- 02-retrieval/
