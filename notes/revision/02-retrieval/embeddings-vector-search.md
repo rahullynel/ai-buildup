@@ -115,6 +115,43 @@ It can search:
 - 1 billion vectors with advanced indexes
 This is why every serious RAG system uses FAISS or a similar vector DB.
 
+### What FAISS Actually computes: Distance, Not meaning..
+
+When you embed text, you get a vector like:
+[0.12, -0.04, 0.88, ..., 0.33]
+
+
+FAISS doesn’t “understand” cricket or IPL or CSK.
+It only understands geometry.
+
+Your query:
+“How many times has CSK won the trophy”
+
+becomes a vector.
+Your chunks become vectors.
+FAISS then asks:
+“Which chunk vectors are closest to the query vector in high‑dimensional space?”
+
+That’s it.
+
+### Two ways to measure closeness
+
+FAISS supports many metrics, but the two most important ones are : 
+
+## L2 Distance (Euclidean)
+- IndexFlatL2
+
+It measures:
+\mathrm{distance}=\sqrt{(a_1-b_1)^2+...+(a_n-b_n)^2}
+Lower distance = more similar.
+
+- CosineSimilarity
+
+This measures the angle between vectors, not their magnitude.
+\mathrm{similarity}=\frac{a\cdot b}{||a||\cdot ||b||}
+Higher similarity = more similar.
+
+
 ### How FAISS Fits Into a RAG Pipeline
 
 Here’s the flow:
